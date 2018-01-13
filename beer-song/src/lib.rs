@@ -3,10 +3,12 @@ use std::collections::HashMap;
 fn get_bottles(n: i32) -> HashMap<&'static str, String> {
     let mut h = HashMap::new();
     // https://stackoverflow.com/a/38908324
-    // let numbers = -1..100;
     for current in (0..100).rev() {
-        // println!("prev={}, next={}", prev, next);
-        let next = current - 1;
+        let mut next: i32 = current - 1;
+        if current == 0 {
+            next = 99;
+            println!("current {} next {}", current, next);
+        }
 
         if n == current {
             if current == 0 {
@@ -27,24 +29,6 @@ fn get_bottles(n: i32) -> HashMap<&'static str, String> {
             break;
         }
     }
-    // match n {
-    //     0 => {
-    //         h.insert("current", format!("No more bottles"));
-    //         h.insert("next", format!("{} bottles", 99));
-    //     }
-    //     1 => {
-    //         h.insert("current", format!("{} bottle", 1));
-    //         h.insert("next", format!("no more bottles"));
-    //     }
-    //     2 => {
-    //         h.insert("current", format!("{} bottles", 2));
-    //         h.insert("next", format!("{} bottle", 1));
-    //     }
-    //     _ => {
-    //         h.insert("current", format!("{} bottles", n));
-    //         h.insert("next", format!("{} bottles", n - 1));
-    //     }
-    // }
     h
 }
 
